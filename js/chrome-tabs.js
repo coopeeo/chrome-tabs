@@ -1,7 +1,12 @@
-(function(){
-  const isNodeContext = typeof module !== 'undefined' && typeof module.exports !== 'undefined'
-  const Draggabilly = isNodeContext ? require('draggabilly') : window.Draggabilly
-
+((window, factory) => {
+  if (typeof define == 'function' && define.amd) {
+    define(['draggabilly'], Draggabilly => factory(window, Draggabilly))
+  } else if (typeof module == 'object' && module.exports) {
+    module.exports = factory(window, require('draggabilly'))
+  } else {
+    window.ChromeTabs = factory(window, window.Draggabilly)
+  }
+})(window, (window, Draggabilly) => {
   const TAB_CONTENT_MARGIN = 9
   const TAB_CONTENT_OVERLAP_DISTANCE = 1
 
@@ -68,6 +73,7 @@
       this.setupStyleEl()
       this.setupEvents()
       this.layoutTabs()
+      this.setupNewTabButton()
       this.setupDraggabilly()
     }
 
@@ -357,11 +363,11 @@
       this.emit('tabReorder', { tabEl, originIndex, destinationIndex })
       this.layoutTabs()
     }
-  }
 
-  if (isNodeContext) {
-    module.exports = ChromeTabs
-  } else {
-    window.ChromeTabs = ChromeTabs
+    setupNewTabButton() {
+      this.tabContentEl.insertAdjacentHTML('afterend', newTabButtonTemplate)
+      this.layoutTabs()
+    }
   }
-})()
+  return ChromeTabs;
+})

@@ -184,6 +184,7 @@
 
     layoutTabs() {
       const tabContentWidths = this.tabContentWidths
+      let tabsLen = this.tabEls.length
 
       this.tabEls.forEach((tabEl, i) => {
         const contentWidth = tabContentWidths[i]
@@ -208,6 +209,11 @@
         `
       })
       this.styleEl.innerHTML = styleHTML
+
+      if (this.el.offsetWidth - this.tabContentEl.offsetWidth > NEW_TAB_BUTTON_AREA + (TAB_CONTENT_MARGIN / 2) || tabsLen < 5) {
+        this.tabContentEl.style.width = `${ (this.tabEls[0] ? this.tabEls[0].offsetWidth * tabsLen : 0) - (tabsLen > 0 ? ((tabsLen * TAB_CONTENT_MARGIN * 2) - TAB_CONTENT_MIN_WIDTH + TAB_CONTENT_MARGIN) : 0) }px`
+        this.tabContentEl.nextElementSibling.classList.remove('overflow-shadow')
+      } else this.tabContentEl.nextElementSibling.classList.add('overflow-shadow')
     }
 
     createNewTabEl(closeable) {

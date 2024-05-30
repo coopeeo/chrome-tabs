@@ -51,7 +51,7 @@
     </div>
   `
 
-  const newTabButtonTemplate = `
+  /*const newTabButtonTemplate = `
     <div class="new-tab-button-wrapper">
       <svg class="new-tab-button"><svg>
         <g>
@@ -61,6 +61,12 @@
             c2.283,0,4.134-1.867,4.133-4.15C45.399,20.425,43.548,18.557,41.267,18.557z"/>
         </g>
       </svg>
+    </div>
+  `*/
+
+  const newTabButtonTemplate = `
+    <div class="new-tab-button-wrapper">
+      <button class="new-tab-button">✚</button>
     </div>
   `
 

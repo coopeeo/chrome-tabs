@@ -50,6 +50,12 @@
     </div>
   `
 
+  const newTabButtonTemplate = `
+    <div class="new-tab-button-wrapper">
+      <button class="new-tab-button">✚</button>
+    </div>
+  `
+  
   const defaultTapProperties = {
     title: 'New tab',
     favicon: false

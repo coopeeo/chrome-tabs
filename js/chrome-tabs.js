@@ -18,6 +18,7 @@
   const TAB_SIZE_SMALL = 84
   const TAB_SIZE_SMALLER = 60
   const TAB_SIZE_MINI = 48
+  const NEW_TAB_BUTTON_AREA = 90
 
   const noop = _ => {}
 
@@ -113,6 +114,11 @@
         if ([this.el, this.tabContentEl].includes(event.target)) this.addTab()
       })
 
+      this.el.addEventListener("click", ({ target }) => {
+        if (target.classList.contains("new-tab-button"))
+          this.addTab()
+      })
+
       this.tabEls.forEach((tabEl) => this.setTabCloseEventListener(tabEl))
     }
 
@@ -126,7 +132,7 @@
 
     get tabContentWidths() {
       const numberOfTabs = this.tabEls.length
-      const tabsContentWidth = this.tabContentEl.clientWidth
+      const tabsContentWidth = this.el.clientWidth - NEW_TAB_BUTTON_AREA
       const tabsCumulativeOverlappedWidth = (numberOfTabs - 1) * TAB_CONTENT_OVERLAP_DISTANCE
       const targetWidth = (tabsContentWidth - (2 * TAB_CONTENT_MARGIN) + tabsCumulativeOverlappedWidth) / numberOfTabs
       const clampedTargetWidth = Math.max(TAB_CONTENT_MIN_WIDTH, Math.min(TAB_CONTENT_MAX_WIDTH, targetWidth))

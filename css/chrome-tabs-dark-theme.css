@@ -6,7 +6,7 @@
   padding-left: 4px;
 }
 .chrome-tabs.chrome-tabs-dark-theme .new-tab-button-wrapper .new-tab-button {
-  color: rgba(200,200,200,0.5);
+  color: #fff;
 }
 .chrome-tabs.chrome-tabs-dark-theme .new-tab-button-wrapper .new-tab-button:hover {
   background: rgba(154,160,166,0.25);
